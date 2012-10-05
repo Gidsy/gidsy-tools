@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# This pre-commit hook prevents you from committing pdb statements
+
+git diff --cached | grep ^+ | grep 'pdb.set_trace()' > /dev/null
+if [ $? = '0' ]; then
+    echo "You're about to commit code with pdb statements. Please remove them!"
+    echo "Run 'git diff --cached' to see what you're about to commit."
+    exit 1
+fi
