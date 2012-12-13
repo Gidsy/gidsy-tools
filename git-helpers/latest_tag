@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+
+"""
+Usage:
+place script in PATH as latest_tag
+install hub
+define the following bash alias:
+alias gcomparemaster='hub compare `git tag | latest_tag`...master'
+"""
+
+import sys
+import re
+
+RE = re.compile(r'^v(\d+)\.(\d+)(?:\.(\d+))?')
+
+versions = []
+version_2_tag = {}
+
+for line in sys.stdin:
+    line = line.strip()
+    m = RE.match(line)
+    if m:
+        version = tuple(int(n or 0) for n in m.groups())
+        versions.append(version)
+        version_2_tag[version] = line
+
+latest = sorted(versions)[-1]
+sys.stdout.write(version_2_tag[latest])
+    
