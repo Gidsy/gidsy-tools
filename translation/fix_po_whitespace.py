@@ -4,7 +4,7 @@
 Look for trailing whitespace-only lines that the translator didn't add to the
 msgstr in a PO file.
 
-Warning: this is destructive, so make sure you're PO is versioned or you
+Warning: this is destructive, so make sure your PO is versioned or you
 have a backup.
 
 Usage: ./fix_po_whitespace.py path/to/file.po
